@@ -1,0 +1,26 @@
+{
+    "name": "thierree/notification",
+    "description": "This is a library that user composer as the basis for generating email notifications",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Welton Thierree",
+            "email": "welton@tagpage.com.br",
+			"homepage": "https://www.tagpage.com.br",
+			"role": "CEO and Founder"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "phpmailer/phpmailer": "6.1.1"
+    },
+	"config": {
+		"vendor-dir": "lib_ext"
+	},
+	"autoload": {
+		"psr-4": {
+			"Notification\\": "_app"
+		}
+	}
+}
