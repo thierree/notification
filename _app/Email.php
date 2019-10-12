@@ -9,20 +9,20 @@ class Email {
 
     private $mail = \stdclass::class;
 
-    public function __construct() {
+    public function __construct($smtp, $host, $user, $pass, $port, $setFromEmail, $setFromName) {
         $this->mail = new PHPMailer(true);
-        $this->mail->SMTPDebug = 2;                      // Enable verbose debug output
+        $this->mail->SMTPDebug = $smtp;                      // Enable verbose debug output
         $this->mail->isSMTP();                                            // Send using SMTP
-        $this->mail->Host = 'mail.tagpage.com.br';                    // Set the SMTP server to send through
+        $this->mail->Host = $host;                    // Set the SMTP server to send through
         $this->mail->SMTPAuth = true;                                   // Enable SMTP authentication
-        $this->mail->Username = 'send@tagpage.com.br';                     // SMTP username
-        $this->mail->Password = 'sendmail';                               // SMTP password
+        $this->mail->Username = $user;                     // SMTP username
+        $this->mail->Password = $pass;                               // SMTP password
         $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
-        $this->mail->Port = 587;                                    // TCP port to connect to
+        $this->mail->Port = $port;                                    // TCP port to connect to
         $this->mail->Chaset = 'utf-8';
         $this->mail->setLanguage('br');
         $this->mail->isHTML(true);
-        $this->mail->setFrom('suporte@tagpage.com.br', 'Suporte TagPage');
+        $this->mail->setFrom($setFromEmail, $setFromName);
     }
 
     public function sendEmail($subject, $body, $replyEmail, $replyName, $addressEmail, $addressName) {
